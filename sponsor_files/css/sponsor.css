@@ -117,11 +117,11 @@ a {
 }
 
 #donateBox #PayPal {
-	background-image: url(https://charmve.github.io/sponsor_files/imgs/paypal.svg);
+	background-image: url(https://surge-dan.github.io/sponsor_files/imgs/paypal.svg);
 }
 
 #donateBox>#QQPay {
-	background-image: url(https://charmve.github.io/sponsor_files/imgs/QQqianbao.png);
+	background-image: url(https://surge-dan.github.io/sponsor_files/imgs/QQqianbao.png);
 	line-height: 28px;
 }
 
@@ -130,11 +130,11 @@ a {
 }
 
 #donateBox #AliPay {
-	background-image: url(https://charmve.github.io/sponsor_files/imgs/alipay.svg);
+	background-image: url(https://surge-dan.github.io/sponsor_files/imgs/alipay.svg);
 }
 
 #donateBox #WeChat {
-	background-image: url(https://charmve.github.io/sponsor_files/imgs/wechat.svg);
+	background-image: url(https://surge-dan.github.io/sponsor_files/imgs/wechat.svg);
 }
 
 #QRBox {
@@ -170,7 +170,7 @@ a {
 	height: 24px;
 	left: calc(50% + 135px);
 	top: calc(50% - 30px);
-	background: no-repeat center center url(https://charmve.github.io/sponsor_files/imgs/github.svg);
+	background: no-repeat center center url(https://surge-dan.github.io/sponsor_files/imgs/github.svg);
 	background-size: contain;
 	opacity: 0.3;
 	transform: rotatez(15deg);
