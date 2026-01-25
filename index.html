@@ -5,83 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel | Product & Research</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="logo">Daniel.</div>
         <div class="links">
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="mailto:2258578648@qq.com">Contact</a>
+            <a href="#career">Career</a>
+            <a href="#tools">Tools</a>
+            <a href="#insights">Insights</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content fade-in">
-            <h1>构建理性与感性的<br>数字连接点</h1>
-            <p class="subtitle">我是梅乃丹，一名追求极致交互的产品经理 (PM) & CS 研究员。</p>
-            <p class="quote">“活如鱼龙，静如山水”</p>
+    <header class="hero section">
+        <div class="hero-text fade-in">
+            <div class="status-pill">● OPEN TO WORK</div>
+            <h1>Hi, I'm Daniel.<br><span class="highlight">The Product Researcher.</span></h1>
+            <p class="hero-desc">
+                我致力于弥合复杂算法与用户体验之间的鸿沟。<br>
+                以 INFJ 的同理心洞察需求，用 CS 的逻辑构建现实。
+            </p>
+            <div class="hero-stats">
+                <div class="stat"><span>26+</span> Awards</div>
+                <div class="stat"><span>3</span> Top Papers</div>
+                <div class="stat"><span>4yr</span> Coding</div>
+            </div>
+        </div>
+        <div class="hero-visual fade-in">
+            <div class="placeholder-img main-portrait"></div>
         </div>
     </header>
 
-    <section id="work" class="section">
-        <h2 class="section-title">Selected Work</h2>
+    <section id="career" class="section">
+        <h2 class="section-label">Career & Framework</h2>
         
-        <div class="project-card reveal">
-            <div class="project-info">
-                <span class="tag">Product Manager</span>
-                <h3>Bounce 弹跳</h3>
-                <p>基于推荐算法的独立音乐社交平台。针对音乐市场流量分散痛点，构建“社交+演出”闭环。组建 800+ 人社群，验证了垂类社区的用户粘性。</p>
-            </div>
-            <div class="project-visual">
-                <div class="abstract-box" style="background: #e0e0e0;"></div> 
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-info">
-                <span class="tag">Research (TSC / ICWS)</span>
-                <h3>Graph Learning Recommendation</h3>
-                <p>发表于 TSC(CCF-A) 及 ICWS 的顶刊研究。通过高阶超图神经网络解决冷启动与过平滑问题。技术深度支撑产品洞察。</p>
-            </div>
-            <div class="project-visual">
-                <div class="abstract-box" style="background: #d4d4d4;"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <h2 class="section-title">Insights</h2>
-        <div class="about-grid">
-            <div class="chart-container reveal">
-                <canvas id="skillChart"></canvas>
-            </div>
-            <div class="bio-text reveal">
-                <h3>INFJ 的产品哲学</h3>
-                [cite_start]<p>本科 GPA 3.66/4.0，获得 26+ 项奖项 [cite: 7, 12]。这些数字背后，是我对逻辑与美学的双重执着。</p>
-                <p>我擅长用 Python 处理复杂数据，用 Axure 绘制极简交互，更擅长洞察用户未曾言说的需求。</p>
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <h4>26+</h4>
-                        <span>Awards</span>
-                    </div>
-                    <div class="stat-item">
-                        <h4>3</h4>
-                        <span>Top Papers</span>
-                    </div>
-                    <div class="stat-item">
-                        <h4>4+</h4>
-                        <span>Years Coding</span>
-                    </div>
+        <div class="card big-card reveal">
+            <div class="card-content">
+                <span class="card-tag">PRODUCT INCUBATION</span>
+                <h3>Bounce 弹跳 | 独立音乐社交平台</h3>
+                <p>针对音乐市场流量分散痛点，构建“社交+演出”闭环。作为负责人，我主导了从 0 到 1 的孵化，组建了 800+ 人的高粘性社群，验证了垂类社区的商业价值。</p>
+                <div class="data-row">
+                    <div><strong>800+</strong><br><small>Community</small></div>
+                    <div><strong>2000+</strong><br><small>Reads</small></div>
+                    <div><strong>Top 5%</strong><br><small>Performance</small></div>
                 </div>
             </div>
+            <div class="card-visual">
+                <div class="placeholder-img rect-img"></div>
+            </div>
+        </div>
+
+        <div class="card big-card reveal">
+            <div class="card-content">
+                <span class="card-tag">ACADEMIC RESEARCH</span>
+                <h3>Graph Learning | 图神经网络研究</h3>
+                <p>发表于 TSC (CCF-A) 及 ICWS 的顶刊研究。通过构建高阶超图神经网络，解决了推荐系统中的冷启动与过平滑问题。我的技术深度让我能更准确地评估 AI 产品的可行性。</p>
+                <div class="tags-row">
+                    <span class="pill">Python</span>
+                    <span class="pill">PyTorch</span>
+                    <span class="pill">Graph Theory</span>
+                </div>
+            </div>
+            <div class="card-visual">
+                <div class="placeholder-img rect-img"></div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Daniel. Designed with minimalism.</p>
+    <section id="tools" class="section">
+        <h2 class="section-label">Tools & Stack</h2>
+        <div class="grid-container">
+            <div class="card small-card reveal">
+                <i class="ri-code-s-slash-line icon"></i>
+                <h4>Development</h4>
+                <p>Python, C/C++, SQL</p>
+                <a href="#" class="arrow-link">View Projects →</a>
+            </div>
+            <div class="card small-card reveal">
+                <i class="ri-pen-nib-line icon"></i>
+                <h4>Prototyping</h4>
+                <p>Axure, Visio, Tableau</p>
+                <a href="#" class="arrow-link">View Designs →</a>
+            </div>
+            <div class="card small-card reveal">
+                <i class="ri-brain-line icon"></i>
+                <h4>Research</h4>
+                <p>SPSS, MATLAB, Data Mining</p>
+                <a href="#" class="arrow-link">View Papers →</a>
+            </div>
+            <div class="card small-card reveal">
+                <i class="ri-quill-pen-line icon"></i>
+                <h4>Writing</h4>
+                <p>Office, PRD, Academic Writing</p>
+                <a href="#" class="arrow-link">Read Blogs →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights" class="section">
+        <h2 class="section-label">Insights & Papers</h2>
+        <div class="insights-grid">
+            <div class="card insight-card reveal">
+                <span class="badge-hot">TOP TIER</span>
+                <h4>Implicit Supervision-Assisted Graph Collaborative Filtering</h4>
+                <p class="summary">TSC 2024 (CCF-A) | 提出去噪图构建与隐式监督优化，解决标签稀疏问题。</p>
+                <a href="#" class="read-more"><i class="ri-heart-line"></i> Read Abstract</a>
+            </div>
+            <div class="card insight-card reveal">
+                <span class="badge-new">CONFERENCE</span>
+                <h4>High-Order Collaborative Filtering (ICWS 2023)</h4>
+                <p class="summary">利用超图神经网络提取高阶邻域信息，服务于第三方库推荐任务。</p>
+                <a href="#" class="read-more"><i class="ri-heart-line"></i> Read Abstract</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="section footer-section">
+        <div class="cta-box reveal">
+            <h2>Let's build the future.</h2>
+            <a href="mailto:2258578648@qq.com" class="email-link">2258578648@qq.com</a>
+            <p class="copyright">&copy; 2026 Daniel. Designed with simplicity.</p>
+        </div>
     </footer>
 
     <script src="assets/js/main.js"></script>
