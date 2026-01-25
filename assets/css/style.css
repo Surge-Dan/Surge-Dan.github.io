@@ -1,0 +1,81 @@
+:root {
+    --bg-color: #f9f9f9;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --accent: #2d2d2d;
+    --spacing: 120px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 导航栏 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    position: fixed;
+    width: 90%;
+    top: 0;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+.links a { margin-left: 2rem; text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; transition: color 0.3s;}
+.links a:hover { color: var(--text-primary); }
+
+/* 头部区域 */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.hero h1 { font-size: 4rem; font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+.subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin-bottom: 2rem;}
+.quote { font-style: italic; font-size: 0.9rem; color: #999; border-left: 2px solid #ccc; padding-left: 1rem; }
+
+/* 通用板块布局 */
+.section { padding: var(--spacing) 10%; }
+.section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 3rem; border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; display: inline-block;}
+
+/* 项目卡片 */
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+    align-items: center;
+}
+
+.project-info h3 { font-size: 2rem; margin: 0.5rem 0 1rem 0; font-weight: 400; }
+.tag { font-size: 0.75rem; border: 1px solid #ccc; padding: 4px 10px; border-radius: 20px; color: #666; }
+.abstract-box { width: 100%; height: 300px; background-color: #e0e0e0; border-radius: 4px; transition: transform 0.5s ease; }
+.project-card:hover .abstract-box { transform: scale(1.02); }
+
+/* 数据可视化板块 */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.stats-row { display: flex; gap: 3rem; margin-top: 2rem; }
+.stat-item h4 { font-size: 2.5rem; margin: 0; font-weight: 300; }
+.stat-item span { font-size: 0.8rem; color: #999; text-transform: uppercase; }
+
+/* 简单的入场动画类 */
+.fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 1s forwards; }
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .project-card, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
