@@ -1,245 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
+/* 还原 v0/Next.js 的 globals.css 配置 */
 :root {
-    /* 核心色板 */
-    --bg-color: #F3F3F1;      /* 米灰色背景，更温润 */
-    --card-bg: #FFFFFF;
-    --text-primary: #121212;
-    --text-secondary: #6B6B6B;
-    --accent-color: #0052FF;  /* 克莱因蓝，用于强调 */
-    --border-light: #E5E5E5;
-    
-    /* 布局变量 */
-    --container-width: 1100px;
-    --card-radius: 24px;      /* 这种大圆角是现代设计的特征 */
-    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* 基础色板 (OKLCH 格式) */
+  --background: #fcfcfc;
+  --foreground: #4b4b4b;
+  --card: #fafafa;
+  --primary: #8c7878;      /* 你的主色调 */
+  --muted: #f0f0f0;
+  --muted-foreground: #808080;
+  --border: #e5e5e5;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
-/* 布局容器 */
-.container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 24px;
+/* 自定义动画关键帧 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- 导航栏 --- */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: background 0.3s;
+.animate-fade-in {
+  animation: fadeIn 1s forwards;
 }
 
-.glass-effect {
-    background: rgba(243, 243, 241, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+/* 隐藏滚动条但保留功能 (Utility Class) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-.logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
-
-.nav-links a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.2s;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.nav-links a:hover { color: var(--text-primary); }
-
-.btn-contact {
-    background: var(--text-primary);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: transform 0.2s;
-}
-.btn-contact:hover { transform: scale(1.05); }
-
-/* --- 卡片通用样式 (The "EVA" Style) --- */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--card-radius);
-    padding: 32px;
-    border: 1px solid rgba(0,0,0,0.04);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    transition: var(--transition);
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* 悬浮时的柔和长阴影 */
-    border-color: rgba(0,0,0,0.08);
-}
-
-.section-block { margin-bottom: 120px; }
-.section-header { margin-bottom: 48px; }
-.section-header h2 { font-size: 2rem; margin-bottom: 8px; letter-spacing: -1px; }
-.section-header p { color: var(--text-secondary); font-size: 1.1rem; }
-.sub-title { font-size: 1.5rem; margin-bottom: 32px; letter-spacing: -0.5px; }
-
-/* --- ① Hero Section --- */
-.hero-section {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 80px;
-}
-
-.hero-text { flex: 1; max-width: 550px; }
-.hero-text h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    margin: 24px 0;
-}
-.highlight { color: var(--accent-color); }
-
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-.dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; }
-.pulse { animation: pulse-animation 2s infinite; }
-
-.stats-row { display: flex; gap: 16px; margin-top: 40px; }
-.stat-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-}
-.stat-pill i { color: var(--accent-color); font-size: 1.1rem; }
-
-.hero-image { flex: 0.8; height: 500px; display: flex; justify-content: flex-end; }
-.portrait-placeholder {
-    width: 100%;
-    height: 100%;
-    background-color: #E0E0E0; /* 之后替换图片 */
-    background-image: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
-    border-radius: 32px;
-    position: relative;
-    overflow: hidden;
-}
-.overlay-info {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(255,255,255,0.9);
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* --- ② Projects --- */
-.projects-grid { display: grid; gap: 40px; }
-.project-card {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    padding: 0;
-    overflow: hidden;
-    min-height: 400px;
-}
-.card-image { background: #ddd; height: 100%; }
-.project-bg-1 { background-color: #C4D7ED; } /* 示例背景色 */
-.project-bg-2 { background-color: #E2DBC6; }
-
-.card-content { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
-.tags { margin-bottom: 20px; display: flex; gap: 8px; }
-.tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--accent-color); letter-spacing: 1px; }
-
-.kpi-box {
-    margin-top: auto;
-    padding-top: 24px;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 40px;
-}
-.kpi-box strong { display: block; font-size: 1.2rem; margin-bottom: 4px; }
-.kpi-box small { color: var(--text-secondary); font-size: 0.8rem; }
-
-/* --- ③ Research (非对称网格) --- */
-.grid-2-1 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; }
-.paper-card { margin-bottom: 24px; display: flex; gap: 24px; align-items: flex-start; }
-.paper-icon { font-size: 24px; color: var(--text-secondary); background: #f5f5f5; padding: 12px; border-radius: 12px; }
-.badge-blue { background: #E6F0FF; color: #0052FF; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; display: inline-block; }
-.badge-dark { background: #333; color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; display: inline-block; }
-.journal { font-size: 0.85rem; color: var(--text-secondary); margin: 4px 0 8px 0; font-style: italic; }
-.desc { font-size: 0.9rem; color: #555; margin: 0; }
-
-.award-list { padding: 40px; }
-.award-item { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px dashed #eee; padding-bottom: 12px; font-size: 0.9rem; }
-.year { font-weight: 600; color: var(--text-secondary); }
-.more-awards { text-align: center; margin-top: 24px; color: var(--accent-color); font-weight: 600; cursor: pointer; }
-
-/* --- ④ Products Tools --- */
-.tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.tool-card { text-align: center; padding: 40px 24px; }
-.tool-icon { font-size: 2rem; margin-bottom: 16px; color: #333; }
-.tool-card h4 { margin: 0 0 8px 0; }
-.tool-card p { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
-
-/* --- ⑤ Insights --- */
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.blog-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-.blog-cover { height: 160px; background: #eee; }
-.color-1 { background: #D6E4FF; }
-.color-2 { background: #FFE8CC; }
-.color-3 { background: #E3FAE3; }
-.blog-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-.date { font-size: 0.8rem; color: #999; margin-bottom: 8px; display: block; }
-.blog-content h4 { margin: 0 0 16px 0; font-size: 1.1rem; line-height: 1.4; }
-.read-link { margin-top: auto; text-decoration: none; color: var(--accent-color); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; }
-
-/* --- Footer --- */
-.main-footer {
-    background: #111;
-    color: #fff;
-    padding: 100px 24px;
-    margin-top: 80px;
-    border-radius: 40px 40px 0 0;
-    text-align: center;
-}
-.footer-content h2 { font-size: 3rem; margin-bottom: 32px; letter-spacing: -1px; }
-.footer-email { color: #fff; font-size: 1.5rem; text-decoration: underline; text-underline-offset: 8px; }
-.footer-links { margin: 48px 0; display: flex; justify-content: center; gap: 32px; }
-.footer-links a { color: #888; text-decoration: none; transition: color 0.3s; }
-.footer-links a:hover { color: #fff; }
-.copyright { color: #444; font-size: 0.8rem; }
-
-/* --- 动画 --- */
-@keyframes pulse-animation { 0% { box-shadow: 0 0 0 0 rgba(3
