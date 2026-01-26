@@ -1,10 +1,9 @@
-/* 还原 v0/Next.js 的 globals.css 配置 */
+/* 定义颜色变量 (复刻 Next.js 设计) */
 :root {
-  /* 基础色板 (OKLCH 格式) */
   --background: #fcfcfc;
   --foreground: #4b4b4b;
   --card: #fafafa;
-  --primary: #8c7878;      /* 你的主色调 */
+  --primary: #8c7878;      /* 你的高级灰棕主色 */
   --muted: #f0f0f0;
   --muted-foreground: #808080;
   --border: #e5e5e5;
@@ -15,21 +14,27 @@ body {
   color: var(--foreground);
 }
 
-/* 自定义动画关键帧 */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* 技能标签悬浮效果 */
+.skill-tag {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.skill-tag:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
+/* 导航栏激活状态点 */
+.nav-active .active-dot {
+  display: block;
+}
+
+/* 简单的淡入动画 */
 .animate-fade-in {
   animation: fadeIn 1s forwards;
 }
 
-/* 隐藏滚动条但保留功能 (Utility Class) */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
