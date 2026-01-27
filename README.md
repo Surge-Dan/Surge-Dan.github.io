@@ -1,4 +1,3 @@
-```markdown
 # 🌊 Daniel's Digital Garden
 
 > **Tech & Heart | AI x Product**
@@ -73,7 +72,6 @@ Vanilla JavaScript (ES6+)
 │       └── main.js     # 交互引擎 (Hover Logic, Charts, DOM)
 └── README.md           # You are here!
 
-```
 
 ## 🚀 Quick Start
 
