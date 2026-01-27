@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel | Portfolio</title>
-    <meta name="description" content="计算机科学与技术专业 | AI研究者 | 活如鱼龙，静如山水">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -22,410 +21,54 @@
                         sans: ['Cormorant Garamond', 'Georgia', 'serif'],
                         serif: ['Playfair Display', 'Georgia', 'serif'],
                     },
+                    aspectRatio: {
+                        '3/4': '3 / 4',
+                    },
                     colors: {
-                        background: 'var(--background)',
-                        foreground: 'var(--foreground)',
-                        card: 'var(--card)',
-                        primary: 'var(--primary)',
-                        muted: 'var(--muted)',
-                        'muted-foreground': 'var(--muted-foreground)',
-                        border: 'var(--border)',
+                        background: '#FAF9F6', /* 暖米色 */
+                        foreground: '#2D2A26', /* 深褐灰 */
+                        primary: '#8C7878',    /* 核心藕荷棕 */
+                        secondary: '#EBE7D9',  /* 浅米色装饰 */
+                        border: '#E6E4E0',
+                        card: '#FFFFFF',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(140, 120, 120, 0.05)',
+                        'float': '0 25px 50px -12px rgba(140, 120, 120, 0.2)',
+                        'hero-frame': '0 20px 60px -10px rgba(140, 120, 120, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.1)',
                     }
                 }
             }
         }
     </script>
-
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="antialiased selection:bg-primary/20 bg-background text-foreground">
+<body class="bg-background text-foreground antialiased selection:bg-primary/20 overflow-x-hidden">
 
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <button onclick="scrollToSection('hero')" class="text-xl font-serif font-medium tracking-tight text-foreground hover:text-primary transition-all duration-300 hover:tracking-wider">
-                    Daniel
-                </button>
-
-                <div class="hidden md:flex items-center gap-8">
-                    <button onclick="scrollToSection('hero')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="hero">
-                        <span class="relative z-10">关于</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('projects')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="projects">
-                        <span class="relative z-10">项目</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('research')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="research">
-                        <span class="relative z-10">科研</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('products')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="products">
-                        <span class="relative z-10">产品</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('philosophy')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="philosophy">
-                        <span class="relative z-10">哲思</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('awards')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="awards">
-                        <span class="relative z-10">荣誉</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                    <button onclick="scrollToSection('contact')" class="nav-item relative text-sm tracking-wide transition-all duration-300 group overflow-hidden px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground" data-section="contact">
-                        <span class="relative z-10">联系</span>
-                        <span class="absolute inset-0 bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></span>
-                    </button>
-                </div>
-
-                <button class="md:hidden p-2 text-foreground" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border">
-            <div class="flex flex-col py-4 px-6 gap-4">
-                <button onclick="scrollToSection('hero'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">关于</button>
-                <button onclick="scrollToSection('projects'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">项目</button>
-                <button onclick="scrollToSection('research'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">科研</button>
-                <button onclick="scrollToSection('products'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">产品</button>
-                <button onclick="scrollToSection('philosophy'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">哲思</button>
-                <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="text-left text-sm tracking-wide text-muted-foreground">联系</button>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbar-root" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"></nav>
 
     <main class="min-h-screen">
         
-        <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-6">
-            <div class="max-w-6xl w-full">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <div id="hero-text" class="space-y-8 opacity-0 translate-y-8 transition-all duration-1000">
-                        <div class="space-y-4">
-                            <p class="text-primary text-sm tracking-widest uppercase font-medium">Computer Science</p>
-                            <h1 class="text-5xl lg:text-7xl font-serif font-medium tracking-tight text-foreground">Daniel</h1>
-                            <p class="text-xl text-muted-foreground font-light italic">AI Researcher · Product Designer · Lifelong Learner</p>
-                        </div>
-                        <p class="text-muted-foreground leading-relaxed max-w-lg">
-                            广东外语外贸大学计算机科学与技术专业，专注于多模态情感分析、智能推荐和组合优化领域的研究。热爱探索技术与人文的交汇点，相信科技应当服务于人。
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">Python</span>
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">PyTorch</span>
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">深度学习</span>
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">多模态分析</span>
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">推荐系统</span>
-                            <span class="skill-tag px-4 py-2 text-xs border border-border text-muted-foreground">数据挖掘</span>
-                        </div>
-                        <div class="flex items-center gap-6 pt-4">
-                            <a href="https://github.com/Surge-Dan" target="_blank" class="text-muted-foreground hover:text-primary transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
-                            <a href="mailto:2258578648@qq.com" class="text-muted-foreground hover:text-primary transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
-                            <a href="tel:15913881857" class="text-muted-foreground hover:text-primary transition-colors"><i data-lucide="phone" class="w-5 h-5"></i></a>
-                        </div>
-                        <div class="pt-4 space-y-2 text-sm text-muted-foreground">
-                            <p><span class="text-foreground font-medium">GPA:</span> <span class="font-serif text-lg text-primary">3.66</span>/4.00 (Top 5%)</p>
-                            <p><span class="text-foreground font-medium">Rank:</span> <span class="font-serif text-lg text-primary">29</span>/128</p>
-                        </div>
+        <section id="hero-root" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
+            <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center">
+                <div id="hero-static-content" class="order-2 lg:order-1"></div>
+                
+                <div id="hero-gallery-wrapper" class="relative order-1 lg:order-2 aspect-[3/4] w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-hero-frame border border-primary/10 bg-secondary/20">
                     </div>
-
-                    <div id="hero-gallery" class="relative opacity-0 translate-y-8 transition-all duration-1000 delay-300">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm" id="photo-container">
-                            <div class="absolute inset-0 bg-neutral-200 flex items-center justify-center">
-                                <span class="text-muted-foreground italic">Loading Gallery...</span>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-4 left-4 flex gap-2" id="photo-indicators"></div>
-                        <div class="absolute -top-4 -right-4 w-24 h-24 border border-primary/20 pointer-events-none"></div>
-                        <div class="absolute -bottom-4 -left-4 w-32 h-32 border border-primary/10 pointer-events-none"></div>
-                    </div>
-                </div>
-                <div class="flex justify-center mt-20">
-                    <div class="flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
-                        <span class="text-xs tracking-widest">SCROLL</span>
-                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <section id="projects" class="py-32 px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Projects</p>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground">项目经历</h2>
-                    <p class="text-muted-foreground mt-4 max-w-xl italic">从算法设计到产品需求分析，每一个项目都是探索与实践的结晶</p>
-                </div>
-                <div class="space-y-1">
-                    <div class="group relative py-8 border-t border-border transition-all duration-500 cursor-pointer hover:opacity-100 opacity-80 project-item">
-                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mx-6 px-6"></div>
-                        <div class="grid md:grid-cols-12 gap-6 items-start relative z-10">
-                            <div class="md:col-span-2 text-sm text-muted-foreground font-serif italic">2023.03</div>
-                            <div class="md:col-span-4">
-                                <h3 class="text-xl font-serif font-medium text-foreground group-hover:text-primary transition-all duration-300 flex items-center gap-2">
-                                    综测通
-                                    <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100"></i>
-                                </h3>
-                                <p class="text-sm text-muted-foreground mt-1">大学生实时信息共享系统</p>
-                            </div>
-                            <div class="md:col-span-4">
-                                <p class="text-sm text-muted-foreground leading-relaxed">打通高校综测管理系统与学生信息差，简化期末综测申报和管理流程，为用户节省时间。负责推荐算法设计、用户数据分析及项目申报书撰写。</p>
-                            </div>
-                            <div class="md:col-span-2 flex flex-col items-start gap-2">
-                                <span class="text-xs text-primary border border-primary/30 px-2 py-1">算法设计员</span>
-                                <div class="flex flex-wrap gap-1 mt-2">
-                                    <span class="text-xs text-muted-foreground">推荐算法</span>
-                                    <span class="text-xs text-muted-foreground">用户分析</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section id="projects-root" class="py-32 px-6"></section>
 
-                    <div class="group relative py-8 border-t border-border transition-all duration-500 cursor-pointer hover:opacity-100 opacity-80 project-item">
-                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mx-6 px-6"></div>
-                        <div class="grid md:grid-cols-12 gap-6 items-start relative z-10">
-                            <div class="md:col-span-2 text-sm text-muted-foreground font-serif italic">2023.03</div>
-                            <div class="md:col-span-4">
-                                <h3 class="text-xl font-serif font-medium text-foreground group-hover:text-primary transition-all duration-300 flex items-center gap-2">
-                                    预制菜市场调研
-                                    <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100"></i>
-                                </h3>
-                                <p class="text-sm text-muted-foreground mt-1">基于广东省一线城市的深度分析</p>
-                            </div>
-                            <div class="md:col-span-4">
-                                <p class="text-sm text-muted-foreground leading-relaxed">研究一线城市预制菜BC端市场潜力，挖掘消费者行为，完成近50页社会调查报告。使用SPSS、Stata等工具进行数据分析与挖掘。</p>
-                            </div>
-                            <div class="md:col-span-2 flex flex-col items-start gap-2">
-                                <span class="text-xs text-primary border border-primary/30 px-2 py-1">负责人</span>
-                                <div class="flex flex-wrap gap-1 mt-2">
-                                    <span class="text-xs text-muted-foreground">数据分析</span>
-                                    <span class="text-xs text-muted-foreground">SPSS</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section id="research-root" class="py-32 px-6"></section>
 
-                    <div class="group relative py-8 border-t border-border transition-all duration-500 cursor-pointer hover:opacity-100 opacity-80 project-item">
-                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mx-6 px-6"></div>
-                        <div class="grid md:grid-cols-12 gap-6 items-start relative z-10">
-                            <div class="md:col-span-2 text-sm text-muted-foreground font-serif italic">2022.03</div>
-                            <div class="md:col-span-4">
-                                <h3 class="text-xl font-serif font-medium text-foreground group-hover:text-primary transition-all duration-300 flex items-center gap-2">
-                                    聆心湾
-                                    <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100"></i>
-                                </h3>
-                                <p class="text-sm text-muted-foreground mt-1">后疫情时代线上特殊人群暖心项目</p>
-                            </div>
-                            <div class="md:col-span-4">
-                                <p class="text-sm text-muted-foreground leading-relaxed">调研特殊聋哑群体的实际需求，打造针对性OpenCare专栏。以AI语言交流循环链为载体，致力于缓和聋哑群体与普通群体的隔阂。</p>
-                            </div>
-                            <div class="md:col-span-2 flex flex-col items-start gap-2">
-                                <span class="text-xs text-primary border border-primary/30 px-2 py-1">负责人</span>
-                                <div class="flex flex-wrap gap-1 mt-2">
-                                    <span class="text-xs text-muted-foreground">公益</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="products-root" class="py-32 px-6"></section>
 
-        <section id="research" class="py-32 px-6 bg-card">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Research</p>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground">科研成果</h2>
-                    <p class="text-muted-foreground mt-4 max-w-xl italic">在数据挖掘实验室的探索中，深耕多模态情感分析与组合优化领域</p>
-                </div>
+        <section id="philosophy-root" class="py-32 px-6"></section>
 
-                <div class="space-y-6 mb-16">
-                    <div class="paper-item relative border border-border bg-background p-6 transition-all duration-500 cursor-pointer group hover:border-primary/30 hover:shadow-md">
-                        <div class="flex items-start justify-between gap-4">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <span class="text-xs text-primary border border-primary/30 px-2 py-0.5">第二作者</span>
-                                    <span class="text-xs text-muted-foreground">2023.09</span>
-                                </div>
-                                <h3 class="text-lg font-medium text-foreground mb-2">High-Order Collaborative Filtering for Third-Party Library Recommendation</h3>
-                                <div class="flex items-center gap-4 text-sm mb-4">
-                                    <span class="text-primary">ICWS 2023</span>
-                                    <span class="text-muted-foreground">CCF-B | 国际顶级会议</span>
-                                </div>
-                                <p class="text-muted-foreground text-sm leading-relaxed">基于App和第三方库间的关联信息，使用超图神经网络提取高阶邻域信息，服务于实际场景中的第三方库推荐任务。</p>
-                            </div>
-                            <i data-lucide="file-text" class="w-5 h-5 text-muted-foreground flex-shrink-0"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="paper-item relative border border-border bg-background p-6 transition-all duration-500 cursor-pointer group hover:border-primary/30 hover:shadow-md">
-                        <div class="flex items-start justify-between gap-4">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <span class="text-xs text-primary border border-primary/30 px-2 py-0.5">第二作者</span>
-                                    <span class="text-xs text-muted-foreground">2023.06</span>
-                                </div>
-                                <h3 class="text-lg font-medium text-foreground mb-2">A New Debleeding Algorithm for Image colorization</h3>
-                                <div class="flex items-center gap-4 text-sm mb-4">
-                                    <span class="text-primary">ICCECE 2023</span>
-                                    <span class="text-muted-foreground">国际学术会议</span>
-                                </div>
-                                <p class="text-muted-foreground text-sm leading-relaxed">提出一种新颖的着色优化算法，减少了图像边缘处的渗色现象。</p>
-                            </div>
-                            <i data-lucide="file-text" class="w-5 h-5 text-muted-foreground flex-shrink-0"></i>
-                        </div>
-                    </div>
-                </div>
+        <section id="awards-root" class="py-32 px-6"></section>
 
-                <div>
-                    <h3 class="text-xl font-light text-foreground mb-6 flex items-center gap-2">
-                        软著专利 <span class="text-sm text-muted-foreground font-normal">(3)</span>
-                    </h3>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <div class="relative border border-border bg-background p-4 hover:border-primary/30 transition-all duration-300 group hover:shadow-md">
-                            <span class="text-xs text-primary mb-2 block">软著</span>
-                            <p class="text-sm text-foreground">溯古——华夏旅游文创IP平台</p>
-                        </div>
-                        <div class="relative border border-border bg-background p-4 hover:border-primary/30 transition-all duration-300 group hover:shadow-md">
-                            <span class="text-xs text-primary mb-2 block">软著</span>
-                            <p class="text-sm text-foreground">游客易平台</p>
-                        </div>
-                        <div class="relative border border-border bg-background p-4 hover:border-primary/30 transition-all duration-300 group hover:shadow-md">
-                            <span class="text-xs text-primary mb-2 block">专利</span>
-                            <p class="text-sm text-foreground">一种基于高阶协同过滤的第三方库推荐方法及装置</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="products" class="py-32 px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Favorites</p>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground">喜欢的产品</h2>
-                    <p class="text-muted-foreground mt-4 max-w-xl italic">我欣赏那些在细节中体现用心、在体验中传递价值的产品</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="group relative border border-border p-6 transition-all duration-500 cursor-pointer bg-background hover:border-primary/20 hover:shadow-md">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-lg font-serif font-medium text-foreground group-hover:text-primary transition-colors">Notion</h3>
-                                <span class="text-xs text-muted-foreground">效率工具</span>
-                            </div>
-                            <i data-lucide="heart" class="w-4 h-4 text-muted-foreground"></i>
-                        </div>
-                        <p class="text-sm text-muted-foreground leading-relaxed">模块化设计理念，将复杂的信息管理变得优雅而有序。</p>
-                    </div>
-                     <div class="group relative border border-border p-6 transition-all duration-500 cursor-pointer bg-background hover:border-primary/20 hover:shadow-md">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-lg font-serif font-medium text-foreground group-hover:text-primary transition-colors">ChatGPT</h3>
-                                <span class="text-xs text-muted-foreground">AI助手</span>
-                            </div>
-                            <i data-lucide="heart" class="w-4 h-4 text-muted-foreground"></i>
-                        </div>
-                        <p class="text-sm text-muted-foreground leading-relaxed">对话式交互降低了AI使用门槛，让技术真正服务于人。</p>
-                    </div>
-                     <div class="group relative border border-border p-6 transition-all duration-500 cursor-pointer bg-background hover:border-primary/20 hover:shadow-md">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-lg font-serif font-medium text-foreground group-hover:text-primary transition-colors">Arc Browser</h3>
-                                <span class="text-xs text-muted-foreground">浏览器</span>
-                            </div>
-                            <i data-lucide="heart" class="w-4 h-4 text-muted-foreground"></i>
-                        </div>
-                        <p class="text-sm text-muted-foreground leading-relaxed">重新想象浏览器，证明了成熟品类仍有创新空间。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="philosophy" class="py-32 px-6 bg-card">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Philosophy</p>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground">哲思与方法论</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="p-6 border border-primary/20 bg-primary/5 rounded-sm">
-                        <span class="text-xs text-primary block mb-2">人生态度</span>
-                        <h3 class="text-2xl font-serif mb-4">活如鱼龙，静如山水</h3>
-                        <p class="text-muted-foreground">这是我对自己的期许——在需要行动时如鱼龙般灵活敏捷，在需要沉淀时如山水般宁静深远。动静之间，寻找平衡。</p>
-                    </div>
-                    <div class="p-6 border border-border rounded-sm">
-                        <span class="text-xs text-primary block mb-2">产品思维</span>
-                        <h3 class="text-2xl font-serif mb-4">以用户为中心</h3>
-                        <p class="text-muted-foreground">好的产品不是功能的堆砌，而是对用户需求的深刻理解。每一个设计决策都应该回答：这对用户有什么价值？</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="awards" class="py-32 px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16">
-                    <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Awards</p>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground">荣誉奖项</h2>
-                    <p class="text-muted-foreground mt-4 max-w-xl italic">26+ 项校级及以上荣誉，见证成长的每一步</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-baseline border-b border-border pb-2">
-                            <span class="text-lg font-medium">全国大学生数学建模大赛 省级三等奖</span>
-                            <span class="text-sm text-muted-foreground">2023</span>
-                        </div>
-                        <div class="flex justify-between items-baseline border-b border-border pb-2">
-                            <span class="text-lg font-medium">全国计算机设计大赛 省级三等奖</span>
-                            <span class="text-sm text-muted-foreground">2023</span>
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-baseline border-b border-border pb-2">
-                            <span class="text-lg font-medium">综合一等奖学金 / 云阁奖学金</span>
-                            <span class="text-sm text-muted-foreground">校级</span>
-                        </div>
-                        <div class="flex justify-between items-baseline border-b border-border pb-2">
-                            <span class="text-lg font-medium">三好学生 / 优秀骨干</span>
-                            <span class="text-sm text-muted-foreground">校级</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-32 px-6 bg-card">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <p class="text-primary text-sm tracking-widest uppercase mb-4 font-medium">Contact</p>
-                        <h2 class="text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground mb-6">联系方式</h2>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 p-4 border border-border">
-                                <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
-                                <span class="text-foreground">2258578648@qq.com</span>
-                            </div>
-                            <div class="flex items-center gap-4 p-4 border border-border">
-                                <i data-lucide="github" class="w-5 h-5 text-primary"></i>
-                                <a href="https://github.com/Surge-Dan" class="text-foreground hover:underline">Surge-Dan</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -top-8 -left-8 text-8xl text-primary/10 font-serif select-none">"</div>
-                        <blockquote class="relative z-10 pl-8 border-l-2 border-primary">
-                            <p class="text-2xl lg:text-3xl font-serif font-medium text-foreground leading-relaxed mb-6 italic">The only way to do great work is to love what you do.</p>
-                            <footer class="text-muted-foreground"><cite class="not-italic">— Steve Jobs</cite></footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="max-w-6xl mx-auto mt-20 flex justify-center">
-                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                    <i data-lucide="arrow-up" class="w-4 h-4 group-hover:-translate-y-1 transition-transform"></i>
-                    <span class="text-xs tracking-widest">BACK TO TOP</span>
-                </button>
-            </div>
-        </section>
+        <section id="contact-root" class="py-32 px-6"></section>
     </main>
 
     <script src="assets/js/main.js"></script>
