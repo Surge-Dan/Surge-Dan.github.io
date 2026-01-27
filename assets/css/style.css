@@ -1,40 +1,63 @@
-/* 定义颜色变量 (复刻 Next.js 设计) */
-:root {
-  --background: #fcfcfc;
-  --foreground: #4b4b4b;
-  --card: #fafafa;
-  --primary: #8c7878;      /* 你的高级灰棕主色 */
-  --muted: #f0f0f0;
-  --muted-foreground: #808080;
-  --border: #e5e5e5;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* 技能标签悬浮效果 */
-.skill-tag {
-  transition: all 0.3s ease;
-  cursor: default;
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
 }
-.skill-tag:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-/* 导航栏激活状态点 */
-.nav-active .active-dot {
-  display: block;
-}
-
-/* 简单的淡入动画 */
-.animate-fade-in {
-  animation: fadeIn 1s forwards;
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.nav-dot {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+}
+.group:hover .nav-dot, .nav-active .nav-dot {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* --- 修复后的卡片交互 --- */
+.smooth-card {
+    /* 移除 scale 相关的 transition，只保留位移和阴影 */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.3s ease;
+    background: #ffffff;
+}
+
+.smooth-card:hover {
+    transform: translateY(-6px); /* 仅上浮，不缩放，防止字体模糊 */
+    box-shadow: 0 25px 50px -12px rgba(140, 120, 120, 0.15);
+    border-color: rgba(140, 120, 120, 0.3);
+    z-index: 10;
+}
+
+@keyframes growWidth {
+    from { width: 0; }
+    to { width: var(--w); }
+}
+.animate-grow {
+    animation: growWidth 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 奖项交互高亮 */
+.award-row {
+    transition: opacity 0.3s ease;
 }
