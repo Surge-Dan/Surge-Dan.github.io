@@ -1,11 +1,3 @@
-这是一个为你量身定制的 `README.md`。
-
-它结合了你 **"AI Researcher + Product Manager"** 的双重身份，融入了你 **INFJ** 的细腻感，以及你对网页 **"高级感、简约、交互细节"** 的追求。风格既专业又带一点极客的趣味。
-
-你可以直接复制以下内容到你仓库的 `README.md` 文件中。
-
----
-
 ```markdown
 # 🌊 Daniel's Digital Garden
 
