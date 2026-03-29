@@ -317,17 +317,23 @@ function buildFavCarousel() {
   const radius = getCarouselRadius();
   const angleStep = 360 / total;
   carousel.innerHTML = '';
+  
+  // 检查是否为移动设备
+  const isMobile = window.innerWidth <= 768;
+  
   FAV_ITEMS.forEach((item, i) => {
     const angle = angleStep * i;
     const card = document.createElement('div');
     card.className = 'fav-3d-card';
     card.dataset.index = i;
+    
     // icon with fallback
     const iconEl = document.createElement('img');
     iconEl.className = 'fav-3d-icon';
     iconEl.src = item.icon;
     iconEl.alt = item.name + ' 图标';
-    iconEl.loading = 'lazy';
+    iconEl.loading = 'eager'; // 改为eager加载，避免lazy加载导致的模糊
+    iconEl.style.imageRendering = 'crisp-edges'; // 优化图像渲染
     iconEl.onerror = function () {
       const fb = document.createElement('div');
       fb.className = 'fav-icon-fallback';
@@ -339,7 +345,14 @@ function buildFavCarousel() {
     nameEl.textContent = item.name;
     card.appendChild(iconEl);
     card.appendChild(nameEl);
-    card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+    
+    // 移动设备优化：简化3D效果
+    if (isMobile) {
+      card.style.transform = `translateZ(${radius}px)`;
+    } else {
+      card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+    }
+    
     card.addEventListener('click', () => {
       clearInterval(favAutoTimer);
       rotateFavTo(i);
@@ -353,7 +366,35 @@ function rotateFavTo(idx) {
   favCurrentIdx = ((idx % FAV_ITEMS.length) + FAV_ITEMS.length) % FAV_ITEMS.length;
   const angleStep = 360 / FAV_ITEMS.length;
   const carousel = document.getElementById('favCarousel');
-  if (carousel) carousel.style.transform = `rotateY(${-favCurrentIdx * angleStep}deg)`;
+  
+  // 检查是否为移动设备
+  const isMobile = window.innerWidth <= 768;
+  
+  if (carousel) {
+    if (isMobile) {
+      // 移动设备：简化3D效果，只显示当前卡片
+      carousel.style.transform = 'rotateY(0deg)';
+      // 移动设备：隐藏其他卡片，只显示当前卡片
+      document.querySelectorAll('.fav-3d-card').forEach((c, i) => {
+        if (i === favCurrentIdx) {
+          c.style.display = 'flex';
+          c.style.opacity = '1';
+          c.style.transform = 'translateZ(100px)';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    } else {
+      // 桌面设备：保持完整3D效果
+      carousel.style.transform = `rotateY(${-favCurrentIdx * angleStep}deg)`;
+      document.querySelectorAll('.fav-3d-card').forEach((c, i) => {
+        c.style.display = 'flex';
+        c.style.opacity = '1';
+        c.style.transform = `rotateY(${angleStep * i}deg) translateZ(${getCarouselRadius()}px)`;
+      });
+    }
+  }
+  
   updateFavInfo(favCurrentIdx);
   document.querySelectorAll('.fav-3d-card').forEach((c, i) => {
     c.classList.toggle('fav-active', i === favCurrentIdx);
