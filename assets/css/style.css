@@ -883,13 +883,13 @@ section { background: var(--bg); }
 .expand-chevron { transition: transform 0.32s ease; display: inline-block; font-style: normal; }
 .project-card.expanded .expand-chevron { transform: rotate(180deg); }
 .project-card-detail {
-  max-height: 0 !important; overflow: hidden;
-  transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
-  padding: 0 28px !important;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.3s ease;
+  padding: 0 28px;
   background: var(--bg-card2);
 }
 .project-card.expanded .project-card-detail {
-  max-height: 600px !important; padding: 22px 28px !important;
+  max-height: 1000px; padding: 22px 28px;
 }
 .project-meta { display: flex; flex-direction: column; gap: 10px; }
 .meta-row { display: flex; gap: 10px; align-items: flex-start; }
@@ -1323,7 +1323,7 @@ footer {
   position: relative; overflow: hidden;
 }
 .hb-name  { grid-area: name; }
-.hb-photo { grid-area: photo; padding: 0; overflow: hidden; }
+.hb-photo { grid-area: photo; padding: 0; overflow: hidden; position: relative; }
 .hb-s1    { grid-area: s1; }
 .hb-tline { grid-area: tline; }
 .hb-s2    { grid-area: s2; }
