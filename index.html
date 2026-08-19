@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4efe6">
 <title>Daniel · 梅乃丹 | 个人展示窗口</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://pic1.imgdb.cn" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -24,21 +27,72 @@
     <li><a href="#favorites">喜欢的产品</a></li>
     <li><a href="#contact">联系方式</a></li>
   </ul>
-  <button class="theme-toggle" id="themeToggle" title="切换明暗主题" aria-label="切换主题">🌙</button>
-  <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">☰</button>
+  <button class="theme-toggle" id="themeToggle" type="button" title="切换明暗主题" aria-label="切换主题" aria-pressed="false"><span class="theme-icon" data-icon="moon" aria-hidden="true"></span></button>
+  <button class="nav-menu-btn" id="menuBtn" type="button" aria-label="菜单" aria-expanded="false"><span class="menu-glyph" aria-hidden="true">☰</span></button>
 </nav>
 
 <div class="nav-drawer" id="navDrawer">
-  <a href="#hero" onclick="closeDrawer()">首页</a>
-  <a href="#about" onclick="closeDrawer()">关于我</a>
-  <a href="#work" onclick="closeDrawer()">工作经历</a>
-  <a href="#projects" onclick="closeDrawer()">项目经历</a>
-  <a href="#skills" onclick="closeDrawer()">技能能力</a>
-  <a href="#favorites" onclick="closeDrawer()">喜欢的产品</a>
-  <a href="#contact" onclick="closeDrawer()">联系方式</a>
+  <a href="#hero">首页</a>
+  <a href="#about">关于我</a>
+  <a href="#work">工作经历</a>
+  <a href="#projects">项目经历</a>
+  <a href="#skills">技能能力</a>
+  <a href="#favorites">喜欢的产品</a>
+  <a href="#contact">联系方式</a>
 </div>
 
 <section id="hero">
+  <div class="hero-oil-scene" aria-hidden="true">
+    <svg viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid slice" role="presentation">
+      <defs>
+        <linearGradient id="oilSky" x1="0" y1="0" x2="0.9" y2="1">
+          <stop offset="0" stop-color="#b7d8d1"/>
+          <stop offset="0.38" stop-color="#8ebfc1"/>
+          <stop offset="0.7" stop-color="#4d9aa6"/>
+          <stop offset="1" stop-color="#175c70"/>
+        </linearGradient>
+        <linearGradient id="oilHorizon" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#d9b887" stop-opacity=".74"/>
+          <stop offset=".48" stop-color="#f3dbb4" stop-opacity=".92"/>
+          <stop offset="1" stop-color="#d7a579" stop-opacity=".62"/>
+        </linearGradient>
+        <linearGradient id="oilWater" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2c8190" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#0b465d" stop-opacity=".98"/>
+        </linearGradient>
+        <filter id="oilBrush" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency=".012 .045" numOctaves="2" seed="17" result="grain"/>
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+          <feGaussianBlur stdDeviation=".22"/>
+        </filter>
+        <filter id="oilSoft" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="2" seed="9" result="grain"/>
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="18"/>
+          <feGaussianBlur stdDeviation="1.2"/>
+        </filter>
+        <radialGradient id="oilSun" cx="50%" cy="40%" r="42%">
+          <stop offset="0" stop-color="#fff1c8" stop-opacity=".8"/>
+          <stop offset=".42" stop-color="#f5d6a0" stop-opacity=".28"/>
+          <stop offset="1" stop-color="#f5d6a0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1600" height="920" fill="url(#oilSky)"/>
+      <ellipse cx="790" cy="315" rx="500" ry="260" fill="url(#oilSun)" filter="url(#oilSoft)"/>
+      <path d="M0 390 C180 326 305 404 462 356 S748 328 920 384 S1222 410 1600 330 L1600 548 L0 548Z" fill="url(#oilHorizon)" opacity=".84" filter="url(#oilBrush)"/>
+      <path d="M0 492 C170 460 298 512 454 474 S772 452 930 494 S1224 508 1600 462 L1600 920 L0 920Z" fill="url(#oilWater)" filter="url(#oilBrush)"/>
+      <g fill="none" stroke-linecap="round" filter="url(#oilBrush)" opacity=".48">
+        <path d="M38 565 C300 522 500 574 742 550 S1218 532 1570 580" stroke="#8cc7c2" stroke-width="13"/>
+        <path d="M-20 648 C250 604 464 668 720 632 S1180 618 1630 650" stroke="#b0d4ca" stroke-width="9"/>
+        <path d="M70 756 C302 706 548 772 808 736 S1212 730 1570 760" stroke="#4f9eaa" stroke-width="16"/>
+        <path d="M-40 842 C250 794 472 852 760 820 S1250 810 1640 846" stroke="#81b9b8" stroke-width="8"/>
+      </g>
+      <g fill="none" stroke="#e7c49a" stroke-linecap="round" opacity=".42" filter="url(#oilSoft)">
+        <path d="M330 450 C490 420 582 452 700 438" stroke-width="18"/>
+        <path d="M930 462 C1080 434 1206 464 1340 446" stroke-width="14"/>
+        <path d="M520 620 C670 600 784 626 900 606" stroke-width="12"/>
+      </g>
+    </svg>
+  </div>
   <div class="blob-layer">
     <div class="blob blob-a"></div>
     <div class="blob blob-b"></div>
@@ -57,33 +111,23 @@
       <span class="hb-role-badge">AI布道者</span>
     </div>
 
-    <!-- 照片卡 (跨2行) -->
+    <!-- 人物照片：保留原有悬停倾斜交互，仅保留照片本身 -->
     <div class="hb-card hb-photo glass-card reveal reveal-delay-1">
       <div class="card-tilt-inner" id="cardTilt">
         <img
           src="https://pic1.imgdb.cn/item/69778433a583b567209bc8a2.jpg"
           alt="梅乃丹 · 产品经理"
-          loading="lazy"
+          width="640"
+          height="780"
+          loading="eager"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         >
         <div class="hero-photo-placeholder" style="display:none;">
-          <div class="hero-avatar-icon">👩</div>
+          <div class="hero-avatar-icon" aria-hidden="true">D</div>
           <p>广州 · 产品经理<br>2026.05 入职 · 欢迎合作</p>
         </div>
         <div class="card-shine" id="cardShine"></div>
-        <div class="card-overlay">
-          <div class="card-overlay-text">
-            <strong>梅乃丹</strong>
-            产品经理 · 广州 / 远程
-          </div>
-        </div>
       </div>
-    </div>
-
-    <!-- 数据卡1 -->
-    <div class="hb-card hb-s1 glass-card reveal reveal-delay-1">
-      <div class="hb-stat-num">~10<span>w</span></div>
-      <div class="hb-stat-label">累计用户规模</div>
     </div>
 
     <!-- 简介卡 -->
@@ -91,35 +135,35 @@
       <p class="hero-tagline"><strong>产品经理</strong>，让复杂变直观的信仰者。<br>在数据与用户之间寻找那条看不见的桥。<br>把搁浅当作短暂停靠，等下一次顺风再出发。</p>
     </div>
 
-    <!-- 数据卡2 -->
-    <div class="hb-card hb-s2 glass-card reveal reveal-delay-2">
-      <div class="hb-stat-num">100<span>+</span></div>
-      <div class="hb-stat-label">累计带动产品收入</div>
-    </div>
-
-    <!-- 标签卡 -->
+    <!-- 标签卡：补充标签，平衡左侧留白 -->
     <div class="hb-card hb-tags glass-card reveal reveal-delay-3">
-      <span class="hero-tag">AI 产品专家</span>
+      <span class="hero-tag">AI产品专家</span>
       <span class="hero-tag">全链路产品设计</span>
       <span class="hero-tag">数据驱动决策</span>
-      <span class="hero-tag">咖啡爱好者</span>
+      <span class="hero-tag">AI乐观派</span>
+      <span class="hero-tag">行业洞察员</span>
+      <span class="hero-tag">技术爱好者</span>
       <span class="hero-tag">Vibe Coding</span>
     </div>
 
-    <!-- CTA 卡 -->
-    <div class="hb-card hb-cta glass-card reveal reveal-delay-3">
-      <a class="btn-primary" href="#contact">与我合作 →</a>
-      <a class="btn-outline" href="#projects">查看项目</a>
-    </div>
-
-    <!-- 状态卡 -->
-    <div class="hb-card hb-av glass-card reveal reveal-delay-4">
-      <div class="avail-indicator">
-        <span class="avail-dot"></span>
-        <span class="avail-text">可入职</span>
+    <!-- 核心贡献与机会状态 -->
+    <div class="hb-card hb-impact glass-card reveal reveal-delay-2">
+      <div class="hb-impact-kicker">工作摘要 / SELECTED IMPACT</div>
+      <div class="hb-impact-stats">
+        <div><strong>20<span>万</span></strong><small>用户规模</small></div>
+        <div><strong>6<span>款</span></strong><small>产品全链路运营</small></div>
+        <div><strong>100<span>万+</span></strong><small>累计产品收入</small></div>
+        <div><strong>100<span>+</span></strong><small>独立处理需求</small></div>
       </div>
-      <div class="avail-date">2026.05</div>
-      <div class="avail-loc">广州 · 远程</div>
+      <div class="hb-impact-list">
+        <span>独立搭建数据驾驶舱</span>
+        <span>重构会员订购逻辑</span>
+        <span>熟悉通信行业产品体系</span>
+      </div>
+      <div class="hb-impact-availability">
+        <span class="avail-dot"></span>
+        <span>如有合适机会，随时可入职</span>
+      </div>
     </div>
 
   </div>
@@ -142,19 +186,19 @@
 
   <div class="about-grid">
     <div class="about-narrative">
-      <p class="reveal"><strong>我是谁：</strong>一名从广外计算机系走出来的产品萌新，相信技术应当成为人类意图的延伸——而非壁垒。我在逻辑与温度之间寻找平衡，在数据与故事之间架桥。</p>
-      <p class="reveal reveal-delay-1"><strong>做过什么：</strong>在联通（广东）产业互联网，我负责AI云屏助手等<strong>6款</strong>实体卡产品的全链路运营，带动用户规模近<strong>10万</strong>，累计收入超<strong>百万</strong>。期间独立搭建数据驾驶舱、重构会员订购逻辑、引入<strong>4个</strong>合作产品，独立处理<strong>50+</strong>需求。</p>
-      <p class="reveal reveal-delay-2"><strong>为什么这样做：</strong>我喜欢将复杂的逻辑变得透明且易于触达。每一个功能、每一行数据，都应该服务于用户真实的行为路径，而不是系统的自我表达。</p>
+      <p class="reveal"><strong>我是谁：</strong>一名从广外计算机系走出来的产品经理，相信技术应当成为人类意图的延伸，而非壁垒。我在逻辑与温度之间寻找平衡，在数据与故事之间架桥。</p>
+      <p class="reveal reveal-delay-1"><strong>做过什么：</strong>在广东联通，我负责AI助手等<strong>6款</strong>产品的全链路运营，带动用户规模近<strong>20万</strong>，累计收入超<strong>百万</strong>。期间独立搭建数据驾驶舱、重构会员订购逻辑、引入合作产品，独立处理上百个需求，熟悉通信行业产品体系。</p>
+      <p class="reveal reveal-delay-2"><strong>为什么这样做：</strong>我喜欢构建产品的过程，致力于将复杂的逻辑变得透明且易于触达。每一个功能、每一行数据，都应该服务于用户真实的行为路径。我原本是科研出身，半路转产品，但在接触业务的过程中，让我不断成长，慢慢找到自己的定位。</p>
       <p class="reveal reveal-delay-3"><strong>现在关注：</strong>B/C端产品的AI化路径，以及如何将AIGC工具真正融入产品设计与用户体验的闭环之中。对社交、健康、娱乐、本地生活领域充满兴趣。</p>
       <div class="about-philosophy reveal reveal-delay-4">
         <p>设计不仅是视觉，更是连接。让用户从不迷茫。</p>
       </div>
       <div class="about-traits reveal">
-        <span class="trait-chip">🧠 战略思维者</span>
-        <span class="trait-chip">🤖 AI乐观派</span>
-        <span class="trait-chip">🔍 问题解决者</span>
-        <span class="trait-chip">☕ 咖啡爱好者</span>
-        <span class="trait-chip">📐 系统设计师</span>
+        <span class="trait-chip"><span class="icon" data-icon="sparkles" aria-hidden="true"></span>AI乐观派</span>
+        <span class="trait-chip"><span class="icon" data-icon="layout-grid" aria-hidden="true"></span>系统设计师</span>
+        <span class="trait-chip"><span class="icon" data-icon="chart-bar" aria-hidden="true"></span>行业洞察员</span>
+        <span class="trait-chip"><span class="icon" data-icon="code" aria-hidden="true"></span>技术爱好者</span>
+        <span class="trait-chip"><span class="icon" data-icon="brain" aria-hidden="true"></span>问题解决者</span>
       </div>
     </div>
 
@@ -164,7 +208,7 @@
 
         <div class="tl-item">
           <div class="tl-side">
-            <div class="tl-dot">💼</div>
+            <div class="tl-dot"><span class="icon icon-briefcase" data-icon="briefcase" aria-hidden="true"></span></div>
             <div class="tl-connector"></div>
           </div>
           <div class="tl-card">
@@ -174,16 +218,16 @@
             </div>
             <div class="tl-company">联通（广东）产业互联网有限公司</div>
             <div class="tl-role">COP运营中心 · 产品经理</div>
-            <div class="tl-quote">规模是同理心的终极考验。在联通，我学到了为数百万用户构建产品需要严谨的数据支撑，以及倾听用户言外之意的微妙艺术。</div>
+            <div class="tl-quote">在联通，我有幸接触到一个很大的平台。为数百万用户构建产品、提供服务，需要严谨的数据支撑，以及倾听用户言外之意的微妙艺术。做B端产品，一定要考虑市场和盈利。</div>
             <div class="tl-chips">
-              <span>AI 产品</span><span>数据驱动</span><span>全链路管理</span><span>10万用户</span>
+              <span>AI产品</span><span>数据驱动</span><span>全链路管理</span><span>20万用户</span>
             </div>
           </div>
         </div>
 
         <div class="tl-item">
           <div class="tl-side">
-            <div class="tl-dot edu">🎓</div>
+            <div class="tl-dot edu"><span class="icon icon-graduation-cap" data-icon="school" aria-hidden="true"></span></div>
           </div>
           <div class="tl-card edu">
             <div class="tl-header">
@@ -224,7 +268,7 @@
       <span class="work-period">2024.07 — 至今</span>
     </div>
     <p class="work-summary">
-      负责联通云屏平台6款实体卡产品的上线和运营，覆盖自研产品孵化、合作产品引入、规模化推广运营、需求迭代优化全流程。累计带动用户规模近10万，助力云屏业务实现ToC创新发展。
+      负责联通云犀平台6款实体卡产品的上线和运营，覆盖自研产品孵化、合作产品引入、规模化推广运营、需求迭代优化全流程。累计带动用户规模近20万，收入超百万，助力云犀业务实现ToC创新发展。
     </p>
     <div class="work-metrics">
       <div class="metric-item">
@@ -234,7 +278,7 @@
             <circle class="ring-progress" cx="40" cy="40" r="30"
               stroke-dasharray="188.5" stroke-dashoffset="188.5" data-pct="100"/>
           </svg>
-          <div class="metric-value-inner">~10w</div>
+          <div class="metric-value-inner">20W</div>
         </div>
         <div class="metric-label">带动用户规模</div>
       </div>
@@ -247,7 +291,7 @@
           </svg>
           <div class="metric-value-inner">100+</div>
         </div>
-        <div class="metric-label">原型页面输出</div>
+        <div class="metric-label">累计解决需求</div>
       </div>
       <div class="metric-item">
         <div class="metric-ring-wrap">
@@ -256,9 +300,9 @@
             <circle class="ring-progress amber" cx="40" cy="40" r="30"
               stroke-dasharray="188.5" stroke-dashoffset="188.5" data-pct="55"/>
           </svg>
-          <div class="metric-value-inner amber">5000+</div>
+          <div class="metric-value-inner amber">10W+</div>
         </div>
-        <div class="metric-label">呼叫顺振活跃用户</div>
+        <div class="metric-label">活跃用户</div>
       </div>
       <div class="metric-item">
         <div class="metric-ring-wrap">
@@ -269,45 +313,59 @@
           </svg>
           <div class="metric-value-inner amber">150%</div>
         </div>
-        <div class="metric-label">单项效率提升</div>
+        <div class="metric-label">业务效率提升</div>
       </div>
     </div>
     <div class="work-achievements">
       <h4>核心成就</h4>
       <div class="achievement-list">
         <div class="achievement-item reveal">
-          <div class="achievement-icon">🤖</div>
+          <div class="achievement-icon"><span class="icon" data-icon="brain" aria-hidden="true"></span></div>
           <div class="achievement-content">
-            <div class="achievement-title">AI云屏助手 · 标杆产品<em class="ach-toggle">+</em></div>
-            <div class="achievement-desc">深入调研取用户通话记录痛点，构建来电-速记-事件-知识-日程完整产品链路。通过AI对话录音进行自动识别与结构化整理，为云屏产品体系在C端建立稳定触点。</div>
+            <div class="achievement-title">AI助手·标杆产品<em class="ach-toggle">+</em></div>
+            <div class="achievement-desc">负责AI助手产品的规划、设计与上线。深入调研获取用户通话记录沉淀、客户信息分散、后续跟进易遗漏的痛点，累计输出小程序与Web端原型100余张，构建来电-速记-事件-知识-日程完整产品链路，沉淀通话中的营销信息与服务经验，形成可复用的知识内容，为云犀产品体系在C端建立稳定触点。上线后已突破10万用户。</div>
           </div>
         </div>
         <div class="achievement-item reveal reveal-delay-1">
-          <div class="achievement-icon">📞</div>
+          <div class="achievement-icon"><span class="icon" data-icon="phone" aria-hidden="true"></span></div>
           <div class="achievement-content">
-            <div class="achievement-title">呼叫顺振 · 全生命周期建设<em class="ach-toggle">+</em></div>
-            <div class="achievement-desc">梳理业务场景并设计产品解决方案，完成系统能力对接与产品功能落地。搭建完整业务订购流程，产品上线后规模化应用，累计用户量突破5000+，实现云屏在实体卡-固话融合领域的突破。</div>
+            <div class="achievement-title">呼叫顺振·全生命周期建设<em class="ach-toggle">+</em></div>
+            <div class="achievement-desc">主导呼叫顺振产品的全生命周期建设。针对来电漏接、服务中断的痛点，梳理业务场景并设计产品解决方案，完成系统能力对接与产品功能落地。搭建完整业务订购流程，产品上线后规模化应用，实现云犀在实体卡-固话融合领域的突破。</div>
           </div>
         </div>
         <div class="achievement-item reveal reveal-delay-2">
-          <div class="achievement-icon">🔗</div>
+          <div class="achievement-icon"><span class="icon" data-icon="external-link" aria-hidden="true"></span></div>
           <div class="achievement-content">
             <div class="achievement-title">合作产品引入 · 全流程管理<em class="ach-toggle">+</em></div>
-            <div class="achievement-desc">负责 AI云速报、AI数字人、司法矫正、云名片4个产品，完成产品引入评审、商务洽谈、系统对接、产品资费包配置、产品上架、出账结算、运营推广、项目管理等工作。</div>
+            <div class="achievement-desc">负责AI云速报、AI数字人、司法矫正、云名片4个产品，完成产品引入评审、商务洽谈、系统对接、产品资费包配置、产品上架、出账结算、运营推广、项目管理等工作。产品上线后持续打通复杂业务订购流程，累计用户量近10w。</div>
           </div>
         </div>
         <div class="achievement-item reveal reveal-delay-3">
-          <div class="achievement-icon">📊</div>
+          <div class="achievement-icon"><span class="icon" data-icon="chart-bar" aria-hidden="true"></span></div>
           <div class="achievement-content">
             <div class="achievement-title">经营驾驶舱 · 数据驱动决策<em class="ach-toggle">+</em></div>
-            <div class="achievement-desc">独立搭建内部经分数据驾驶舱，整合多源业务数据并开展交叉清洗与分析，构建可视化看板，覆盖收入、用户规模等核心指标。累计处理数据规模达百万级，并负责后续长期运营与维护。</div>
+            <div class="achievement-desc">独立搭建内部经分数据驾驶舱，整合多源业务数据并开展交叉清洗与分析，构建可视化看板，覆盖收入、用户规模等核心指标。通过数据结构化呈现，为一线营销与客户拓展提供数据支持，持续链接客户。累计处理数据规模达百万级，并负责后续的长期运营与维护。</div>
           </div>
         </div>
         <div class="achievement-item reveal reveal-delay-4">
-          <div class="achievement-icon">⚡</div>
+          <div class="achievement-icon"><span class="icon" data-icon="layout-grid" aria-hidden="true"></span></div>
+          <div class="achievement-content">
+            <div class="achievement-title">会员权益体系打造·订购逻辑重构<em class="ach-toggle">+</em></div>
+            <div class="achievement-desc">围绕原有ToB+ToC受理模式中订购路径分散、增值能力难以统一承载的问题，重新设计会员订购逻辑，将多类增值应用组合打包，形成统一的会员权益结构与方案。提升用户订购与使用的连贯性，拓展云犀在C端场景中的用户覆盖。</div>
+          </div>
+        </div>
+        <div class="achievement-item reveal reveal-delay-5">
+          <div class="achievement-icon"><span class="icon" data-icon="megaphone" aria-hidden="true"></span></div>
+          <div class="achievement-content">
+            <div class="achievement-title">产品运营·营销增长<em class="ach-toggle">+</em></div>
+            <div class="achievement-desc">输出产品营销工具包、宣传物料等标准化推广材料，助力全国10w+客户经理开展业务受理与推广。深入一线挖掘客情与客户需求，总结可复制的营销打法并进行推广赋能。共计组织大型培训近20场，拉动用户提升近5w，ARPU值提升16%。</div>
+          </div>
+        </div>
+        <div class="achievement-item reveal reveal-delay-6">
+          <div class="achievement-icon"><span class="icon" data-icon="arrow-up" aria-hidden="true"></span></div>
           <div class="achievement-content">
             <div class="achievement-title">需求优化 · 流程提效<em class="ach-toggle">+</em></div>
-            <div class="achievement-desc">承接集团、客户与内部的全渠道需求，完成需求分析、原型设计与落地跟进，共计解决近50个独立需求。深度穿透企业业务受理全流程，提单效率提升 150%，内部结算流程时效缩短60%以上。</div>
+            <div class="achievement-desc">承接集团、客户与内部的全渠道需求，完成需求分析、原型设计与落地跟进，共计解决100余个独立需求。深度穿透企业业务受理全流程，提单效率提升150%，内部结算流程时效缩短60%以上。</div>
           </div>
         </div>
       </div>
@@ -320,42 +378,42 @@
           <span class="dcb-label">用户规模</span>
           <div class="dcb-track">
             <div class="dcb-bar" data-width="100"></div>
-            <span class="dcb-val">~10万用户</span>
+            <span class="dcb-val">~20W用户</span>
           </div>
         </div>
         <div class="dcb-item">
           <span class="dcb-label">原型页面</span>
           <div class="dcb-track">
             <div class="dcb-bar" data-width="82"></div>
-            <span class="dcb-val">100+ 页</span>
+            <span class="dcb-val">100+页</span>
           </div>
         </div>
         <div class="dcb-item">
           <span class="dcb-label">活跃用户</span>
           <div class="dcb-track">
             <div class="dcb-bar amber" data-width="52"></div>
-            <span class="dcb-val">5000+ 人</span>
+            <span class="dcb-val">10W+</span>
           </div>
         </div>
         <div class="dcb-item">
           <span class="dcb-label">效率提升</span>
           <div class="dcb-track">
             <div class="dcb-bar amber" data-width="75"></div>
-            <span class="dcb-val">提升 150%</span>
+            <span class="dcb-val">提升150%</span>
           </div>
         </div>
         <div class="dcb-item">
           <span class="dcb-label">结算时效</span>
           <div class="dcb-track">
             <div class="dcb-bar green" data-width="62"></div>
-            <span class="dcb-val">缩短 60%+</span>
+            <span class="dcb-val">缩短60%</span>
           </div>
         </div>
         <div class="dcb-item">
           <span class="dcb-label">独立需求</span>
           <div class="dcb-track">
             <div class="dcb-bar green" data-width="48"></div>
-            <span class="dcb-val">50+ 个</span>
+            <span class="dcb-val">100+个</span>
           </div>
         </div>
       </div>
@@ -377,12 +435,12 @@
   <div class="projects-grid">
     <div class="project-card reveal">
       <div class="project-card-top">
-        <div class="project-badge">🎓 校园产品</div>
-        <div class="project-icon">📡</div>
+        <div class="project-badge"><span class="icon" data-icon="school" aria-hidden="true"></span>校园产品</div>
+        <div class="project-icon"><span class="icon" data-icon="chart-bar" aria-hidden="true"></span></div>
         <div class="project-name">基于推荐算法的大学生实时信息共享系统</div>
         <p class="project-desc">打通高校综测管理系统，简化学校师生期末综测的申报与管理流程，提升管理效率、助力学生更清晰地规划。</p>
       </div>
-      <div class="project-expand-btn">展开详情 <em class="expand-chevron">↓</em></div>
+      <button class="project-expand-btn" type="button" aria-expanded="false">展开详情 <em class="expand-chevron">↓</em></button>
       <div class="project-card-detail">
         <div class="project-meta">
           <div class="meta-row"><span class="meta-key">角色</span><span class="meta-val">负责人 · 全链路产品设计</span></div>
@@ -400,12 +458,12 @@
 
     <div class="project-card reveal reveal-delay-1">
       <div class="project-card-top">
-        <div class="project-badge">🎵 音乐社交</div>
-        <div class="project-icon amber">🎸</div>
+        <div class="project-badge"><span class="icon" data-icon="blocks" aria-hidden="true"></span>音乐社交</div>
+        <div class="project-icon amber"><span class="icon" data-icon="blocks" aria-hidden="true"></span></div>
         <div class="project-name">Bounce弹跳 · 原创音乐演出资讯平台</div>
         <p class="project-desc">基于用户对音乐的喜好整合推荐独立音乐演出，打造音乐爱好者的社交+音乐+演出社区，为用户提供分享与交流的平台。</p>
       </div>
-      <div class="project-expand-btn">展开详情 <em class="expand-chevron">↓</em></div>
+      <button class="project-expand-btn" type="button" aria-expanded="false">展开详情 <em class="expand-chevron">↓</em></button>
       <div class="project-card-detail">
         <div class="project-meta">
           <div class="meta-row"><span class="meta-key">角色</span><span class="meta-val">负责人 · 产品策略 + 调研</span></div>
@@ -423,12 +481,12 @@
 
     <div class="project-card reveal reveal-delay-2">
       <div class="project-card-top">
-        <div class="project-badge">🏢 产品经理</div>
-        <div class="project-icon">🤖</div>
-        <div class="project-name">AI云屏助手 · 全生命周期建设</div>
+        <div class="project-badge"><span class="icon" data-icon="briefcase" aria-hidden="true"></span>通信产品</div>
+        <div class="project-icon"><span class="icon" data-icon="brain" aria-hidden="true"></span></div>
+        <div class="project-name">AI助手 · 全生命周期建设</div>
         <p class="project-desc">标杆产品，针对来电漏接、服务中断痛点，梳理业务场景并设计全生命周期产品解决方案。</p>
       </div>
-      <div class="project-expand-btn">展开详情 <em class="expand-chevron">↓</em></div>
+      <button class="project-expand-btn" type="button" aria-expanded="false">展开详情 <em class="expand-chevron">↓</em></button>
       <div class="project-card-detail">
         <div class="project-meta">
           <div class="meta-row"><span class="meta-key">角色</span><span class="meta-val">产品经理 · 规划/设计/上线</span></div>
@@ -437,7 +495,7 @@
           <div class="meta-row"><span class="meta-key">结果</span><span class="meta-val">构建来电-速记-事件-知识-日程完整链路，小程序+Web端原型100+张</span></div>
         </div>
         <div class="project-stats">
-          <div class="stat"><div class="stat-num">~10w</div><div class="stat-label">带动用户</div></div>
+          <div class="stat"><div class="stat-num">~10W</div><div class="stat-label">带动用户</div></div>
           <div class="stat"><div class="stat-num">100+</div><div class="stat-label">原型页面</div></div>
           <div class="stat"><div class="stat-num">2025</div><div class="stat-label">上线年份</div></div>
         </div>
@@ -453,21 +511,21 @@
   </div>
   <div class="section-header reveal">
     <div class="section-label">核心能力 / SKILLS</div>
-    <h2 class="section-title">能力矩阵：<br><em>品味 </em><em>判断力 </em>与<em>技术深度 </em></h2>
+    <h2 class="section-title">能力矩阵：<br><em>品味</em><em>判断力</em>与<em>技术深度</em></h2>
     <p class="section-sub">基于现代产品工程视角，不只是工具，更是思维方式与执行能力的综合体现。</p>
   </div>
 
   <div class="skills-layout">
     <div>
       <div class="capability-card reveal" style="margin-bottom:20px;">
-        <h3><div class="cap-icon">🧩</div>全链路产品设计</h3>
-        <p class="cap-desc">从业务需求分析、PRD 编写、原型设计到服务上线的全闭环管理。能独立推进 50+ 需求，提单效率提升 150%。</p>
+        <h3><span class="cap-icon"><span class="icon" data-icon="blocks" aria-hidden="true"></span></span>全链路产品设计</h3>
+        <p class="cap-desc">从业务需求分析、PRD编写、原型设计到服务上线的全闭环管理。能独立处理100+需求，提单效率提升150%。</p>
         <div class="progress-bar-wrap">
           <div class="progress-label"><span class="progress-name">全链路产品设计（从想法到原型）</span><span class="progress-pct">95%</span></div>
           <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
         </div>
         <div class="progress-bar-wrap">
-          <div class="progress-label"><span class="progress-name">复杂系统架构（10w+级CRM）</span><span class="progress-pct">90%</span></div>
+          <div class="progress-label"><span class="progress-name">复杂系统架构（10W+级CRM）</span><span class="progress-pct">90%</span></div>
           <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
         </div>
         <div class="progress-bar-wrap">
@@ -485,17 +543,17 @@
       </div>
 
       <div class="capability-card reveal reveal-delay-1">
-        <h3><div class="cap-icon">🛠️</div>技术栈与工艺</h3>
+        <h3><span class="cap-icon"><span class="icon" data-icon="briefcase" aria-hidden="true"></span></span>技术栈与工艺</h3>
         <p class="cap-desc">精通设计与原型工具，掌握前端基础框架，能快速完成从想法到原型的闭环，并与工程师高效协作。</p>
         <div class="tools-grid">
-          <div class="tool-chip"><span class="tool-icon">🎨</span>Figma · 设计与原型</div>
-          <div class="tool-chip"><span class="tool-icon">🖌️</span>Pixso · 协同设计</div>
-          <div class="tool-chip"><span class="tool-icon">🅒</span>Canva · 物料生产</div>
-          <div class="tool-chip"><span class="tool-icon">⚛️</span>React · 前端框架</div>
-          <div class="tool-chip"><span class="tool-icon">🟢</span>Node.js · 后端运行环境</div>
-          <div class="tool-chip"><span class="tool-icon">🌊</span>MySQL · 数据库管理</div>
-          <div class="tool-chip"><span class="tool-icon">🤖</span>AI工具辅助产品设计</div>
-          <div class="tool-chip"><span class="tool-icon">📄</span>PRD · 需求文档撰写</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>Figma·设计与原型</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>Pixso·协同设计</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>Canva·物料生产</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>React·前端框架</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>Node.js·后端运行环境</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="chart-bar" aria-hidden="true"></span>MySQL·数据库管理</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="brain" aria-hidden="true"></span>AI工具辅助产品设计</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="external-link" aria-hidden="true"></span>PRD·需求文档撰写</div>
         </div>
       </div>
     </div>
@@ -503,37 +561,36 @@
     <div>
       <div class="skill-highlights reveal">
         <div class="skill-highlight">
-          <div class="sh-value">10w+</div>
-          <div class="sh-label">级客户管理能力</div>
-          <div class="sh-sub">统筹多条业务线，构建全渠道需求闭环，提升单项效率达150%</div>
+          <div class="sh-value">20W</div>
+          <div class="sh-label">带动用户规模</div>
+          <div class="sh-sub">统筹多条业务线，构建全渠道需求闭环，带动用户规模近20万</div>
         </div>
         <div class="skill-highlight">
           <div class="sh-value amber">100+</div>
-          <div class="sh-label">高精原型设计</div>
+          <div class="sh-label">累计解决需求</div>
           <div class="sh-sub">精通Figma/Pixso/Canva，高效输出PRD及高保真交互方案</div>
         </div>
         <div class="skill-highlight">
-          <div class="sh-value">百万</div>
-          <div class="sh-label">级数据处理规模</div>
+          <div class="sh-value">10W+</div>
+          <div class="sh-label">活跃用户</div>
           <div class="sh-sub">独立搭建多源业务驾驶舱，通过行为分析指导产品迭代与运营推广</div>
         </div>
         <div class="skill-highlight">
-          <div class="sh-value amber">50+</div>
-          <div class="sh-label">独立需求解决</div>
-          <div class="sh-sub">深度穿透企业业务受理全流程，内部结算流程时效缩短60%以上</div>
+          <div class="sh-value amber">150%</div>
+          <div class="sh-label">业务效率提升</div>
+          <div class="sh-sub">深度穿透企业业务受理全流程，提单效率提升150%，结算时效缩短60%以上</div>
         </div>
       </div>
 
       <div class="capability-card reveal reveal-delay-2" style="margin-top:20px;">
-        <h3><div class="cap-icon">🎓</div>学术成就</h3>
+        <h3><span class="cap-icon"><span class="icon" data-icon="school" aria-hidden="true"></span></span>学术成就</h3>
         <p class="cap-desc">广东外语外贸大学 · 计算机科学与技术 · GPA 3.66/4.0</p>
         <div class="tools-grid">
-          <div class="tool-chip">🏆 连续三年综合一等奖学金</div>
-          <div class="tool-chip">📝 发表4篇论文</div>
-          <div class="tool-chip">🌍 CCF-A国际顶刊接收</div>
-          <div class="tool-chip">📱 申请2项软著</div>
-          <div class="tool-chip">💡 1项发明专利</div>
-          <div class="tool-chip">⭐ 校级优秀个人代表</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="school" aria-hidden="true"></span>连续三年综合一等奖学金</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="external-link" aria-hidden="true"></span>发表4篇论文</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="chart-bar" aria-hidden="true"></span>CCF-A国际顶刊接收</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="blocks" aria-hidden="true"></span>申请2项软著</div>
+          <div class="tool-chip"><span class="tool-icon icon" data-icon="plus" aria-hidden="true"></span>1项发明专利</div>
         </div>
       </div>
     </div>
@@ -556,8 +613,8 @@
       <div class="fav-stage">
         <div id="favCarousel" class="fav-carousel"></div>
       </div>
-      <button class="fav-nav-btn" id="favPrev">‹</button>
-      <button class="fav-nav-btn" id="favNext">›</button>
+      <button class="fav-nav-btn" id="favPrev" type="button" aria-label="上一个喜欢的产品"><span class="icon" data-icon="chevron-left" aria-hidden="true"></span></button>
+      <button class="fav-nav-btn" id="favNext" type="button" aria-label="下一个喜欢的产品"><span class="icon" data-icon="chevron-right" aria-hidden="true"></span></button>
     </div>
     <div id="favActiveInfo" class="fav-active-info"></div>
   </div>
@@ -575,28 +632,28 @@
       <p class="contact-desc">目前正在寻求就业机会&产品交流。欢迎随时联系，讨论最前沿的技术。</p>
 
       <div class="contact-item">
-        <div class="contact-icon-wrap">📧</div>
+        <div class="contact-icon-wrap"><span class="icon" data-icon="mail" aria-hidden="true"></span></div>
         <div class="contact-detail">
           <div class="c-label">邮箱</div>
           <div class="c-value"><a href="mailto:2258578648@qq.com">2258578648@qq.com</a></div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon-wrap">📱</div>
+        <div class="contact-icon-wrap"><span class="icon" data-icon="phone" aria-hidden="true"></span></div>
         <div class="contact-detail">
           <div class="c-label">手机</div>
           <div class="c-value">15913881857</div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon-wrap">📍</div>
+        <div class="contact-icon-wrap"><span class="icon" data-icon="map-pin" aria-hidden="true"></span></div>
         <div class="contact-detail">
           <div class="c-label">位置</div>
           <div class="c-value">广州/深圳/支持远程</div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon-wrap">🌐</div>
+        <div class="contact-icon-wrap"><span class="icon" data-icon="external-link" aria-hidden="true"></span></div>
         <div class="contact-detail">
           <div class="c-label">个人网站</div>
           <div class="c-value">surge-dan.github.io</div>
@@ -604,9 +661,9 @@
       </div>
 
       <div class="contact-social">
-        <a class="social-btn" href="https://surge-dan.github.io/" target="_blank">🌐 个人网站</a>
-        <a class="social-btn" href="https://github.com/Surge-Dan" target="_blank">💼 GitHub</a>
-        <a class="social-btn" href="https://xhslink.com/m/9Zs4qPaFHB" target="_blank">📕 小红书</a>
+        <a class="social-btn" href="https://surge-dan.github.io/" target="_blank" rel="noopener noreferrer"><span class="icon" data-icon="external-link" aria-hidden="true"></span>个人网站</a>
+        <a class="social-btn" href="https://github.com/Surge-Dan" target="_blank" rel="noopener noreferrer"><span class="icon" data-icon="brand-github" aria-hidden="true"></span>GitHub</a>
+        <a class="social-btn" href="https://xhslink.com/m/9Zs4qPaFHB" target="_blank" rel="noopener noreferrer"><span class="icon" data-icon="blocks" aria-hidden="true"></span>小红书</a>
       </div>
     </div>
 
@@ -614,17 +671,17 @@
       <div class="contact-form">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">姓名</label>
-            <input type="text" class="form-input" placeholder="请输入您的姓名" id="fName">
+            <label class="form-label" for="fName">姓名</label>
+            <input type="text" class="form-input" placeholder="请输入您的姓名…" id="fName" name="name" autocomplete="name">
           </div>
           <div class="form-group">
-            <label class="form-label">邮箱</label>
-            <input type="email" class="form-input" placeholder="john@example.com" id="fEmail">
+            <label class="form-label" for="fEmail">邮箱</label>
+            <input type="email" class="form-input" placeholder="john@example.com" id="fEmail" name="email" autocomplete="email" spellcheck="false">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">主题</label>
-          <select class="form-select" id="fTopic">
+          <label class="form-label" for="fTopic">主题</label>
+          <select class="form-select" id="fTopic" name="topic" autocomplete="off">
             <option value="">请选择咨询主题</option>
             <option>全职职位</option>
             <option>自媒体商务合作</option>
@@ -633,12 +690,13 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">留言</label>
-          <textarea class="form-textarea" placeholder="请描述您的想法或项目需求..." id="fMsg"></textarea>
+          <label class="form-label" for="fMsg">留言</label>
+          <textarea class="form-textarea" placeholder="请描述您的想法或项目需求…" id="fMsg" name="message" autocomplete="off"></textarea>
         </div>
-        <button class="form-submit" id="submitBtn" type="button" onclick="handleSubmit()">
-          发送消息 ➤
+        <button class="form-submit" id="submitBtn" type="button" aria-describedby="submitStatus">
+          发送消息 <span class="icon" data-icon="external-link" aria-hidden="true"></span>
         </button>
+        <span id="submitStatus" class="sr-only" aria-live="polite"></span>
       </div>
     </div>
   </div>
@@ -656,9 +714,8 @@
   </div>
 </footer>
 
-<button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+<button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部"><span class="icon" data-icon="arrow-up" aria-hidden="true"></span></button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init('gOCF5qyQ1KMPMukzw');</script>
 <script src="assets/js/main.js"></script>

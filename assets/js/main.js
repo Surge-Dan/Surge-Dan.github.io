@@ -6,7 +6,7 @@ function getTheme() { return html.getAttribute('data-theme'); }
 function setTheme(t) {
   html.setAttribute('data-theme', t);
   localStorage.setItem('theme', t);
-  if (themeBtn) themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+  if (themeBtn) themeBtn.innerHTML = '';
 }
 const savedTheme = localStorage.getItem('theme') || 'light';
 setTheme(savedTheme);
@@ -21,13 +21,16 @@ if (menuBtn && drawer) {
     drawerOpen = !drawerOpen;
     drawer.classList.toggle('open', drawerOpen);
     menuBtn.textContent = drawerOpen ? '✕' : '☰';
+    menuBtn.setAttribute('aria-expanded', String(drawerOpen));
   });
 }
 function closeDrawer() {
   drawerOpen = false;
   if (drawer) drawer.classList.remove('open');
   if (menuBtn) menuBtn.textContent = '☰';
+  if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
 }
+drawer?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDrawer));
 
 /* ====== Char Drop Name Animation ====== */
 const nameEl = document.getElementById('heroName');
@@ -234,8 +237,14 @@ document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('click', function (e) {
     if (e.target.closest('a')) return;
     const isExpanded = this.classList.contains('expanded');
-    document.querySelectorAll('.project-card').forEach(c => c.classList.remove('expanded'));
-    if (!isExpanded) this.classList.add('expanded');
+    document.querySelectorAll('.project-card').forEach(c => {
+      c.classList.remove('expanded');
+      c.querySelector('.project-expand-btn')?.setAttribute('aria-expanded', 'false');
+    });
+    if (!isExpanded) {
+      this.classList.add('expanded');
+      this.querySelector('.project-expand-btn')?.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
@@ -327,13 +336,15 @@ function buildFavCarousel() {
     card.className = 'fav-3d-card';
     card.dataset.index = i;
     
-    // icon with fallback
     const iconEl = document.createElement('img');
     iconEl.className = 'fav-3d-icon';
     iconEl.src = item.icon;
     iconEl.alt = item.name + ' 图标';
-    iconEl.loading = 'eager'; // 改为eager加载，避免lazy加载导致的模糊
-    iconEl.style.imageRendering = 'crisp-edges'; // 优化图像渲染
+    iconEl.loading = 'eager';
+    iconEl.style.imageRendering = 'auto';
+    iconEl.decoding = 'sync';
+    iconEl.width = 52;
+    iconEl.height = 52;
     iconEl.onerror = function () {
       const fb = document.createElement('div');
       fb.className = 'fav-icon-fallback';
@@ -405,12 +416,14 @@ function updateFavInfo(idx) {
   const item = FAV_ITEMS[idx];
   const el = document.getElementById('favActiveInfo');
   if (!el || !item) return;
-  // Build icon element with fallback
   const iconImg = document.createElement('img');
   iconImg.className = 'fav-info-icon';
   iconImg.src = item.icon;
   iconImg.alt = item.name + ' 图标';
   iconImg.loading = 'lazy';
+  iconImg.decoding = 'sync';
+  iconImg.width = 68;
+  iconImg.height = 68;
   iconImg.onerror = function () {
     const fb = document.createElement('div');
     fb.className = 'fav-info-fallback';
@@ -428,6 +441,7 @@ function updateFavInfo(idx) {
 
 function startFavAuto() {
   clearInterval(favAutoTimer);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   favAutoTimer = setInterval(() => rotateFavTo(favCurrentIdx + 1), 2800);
 }
 
@@ -481,22 +495,38 @@ if (backToTop) {
 
 /* ====== Achievement Items Expand / Collapse ====== */
 document.querySelectorAll('.achievement-item').forEach(item => {
-  item.addEventListener('click', function () {
+  const toggleAchievement = function () {
     const wasExpanded = this.classList.contains('ach-expanded');
     document.querySelectorAll('.achievement-item').forEach(i => i.classList.remove('ach-expanded'));
-    if (!wasExpanded) this.classList.add('ach-expanded');
+    document.querySelectorAll('.achievement-item').forEach(i => i.setAttribute('aria-expanded', 'false'));
+    if (!wasExpanded) {
+      this.classList.add('ach-expanded');
+      this.setAttribute('aria-expanded', 'true');
+    }
+  };
+  item.setAttribute('role', 'button');
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('aria-expanded', 'false');
+  item.addEventListener('click', toggleAchievement);
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleAchievement.call(item);
+    }
   });
 });
 
 /* ====== Contact Form ====== */
 function handleSubmit() {
   const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('submitStatus');
   const name = document.getElementById('fName').value.trim();
   const email = document.getElementById('fEmail').value.trim();
   const topic = document.getElementById('fTopic').value;
   const msg = document.getElementById('fMsg').value.trim();
 
   if (!name || !email || !msg) {
+    if (status) status.textContent = '请填写姓名、邮箱和留言';
     btn.style.background = '#ef4444';
     btn.textContent = '请填写完整信息';
     setTimeout(() => {
@@ -507,6 +537,7 @@ function handleSubmit() {
   }
 
   btn.disabled = true;
+  if (status) status.textContent = '正在发送消息';
   btn.innerHTML = '发送中...';
 
   const templateParams = {
@@ -519,6 +550,7 @@ function handleSubmit() {
 
   emailjs.send('service_tzx8w0e', 'template_4vna8ai', templateParams)
     .then(function(response) {
+      if (status) status.textContent = '消息发送成功';
       btn.innerHTML = '✓ 发送成功！即将联系您';
       btn.classList.add('sent');
       setTimeout(() => {
@@ -531,6 +563,7 @@ function handleSubmit() {
         });
       }, 3000);
     }, function(error) {
+      if (status) status.textContent = '消息发送失败，请重试';
       console.error('EmailJS 发送失败:', error);
       console.error('错误信息:', error.text || '未知错误');
       btn.style.background = '#ef4444';
@@ -542,3 +575,52 @@ function handleSubmit() {
       }, 3000);
     });
 }
+
+document.getElementById('submitBtn')?.addEventListener('click', handleSubmit);
+
+/* ====== Unified Tabler icon layer ======
+   Paths are from the Tabler Icons outline set; keeping the small subset inline
+   avoids a second runtime dependency while preserving one consistent stroke voice.
+*/
+const SURFACE_ICON_PATHS = {
+  briefcase: '<path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v.01"/><path d="M3 13a20 20 0 0 0 18 0"/>',
+  school: '<path d="M22 9 12 5 2 9l10 4 10-4v6"/><path d="M6 10.6V16a6 3 0 0 0 12 0v-5.4"/>',
+  brain: '<path d="M15.5 13a3.5 3.5 0 0 0-3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1-7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0-7h-.5"/><path d="M19 9.3V6.5a3.5 3.5 0 0 0-7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0-7H7"/><path d="M5 9.3V6.5a3.5 3.5 0 0 1 7 0v10"/>',
+  'chart-bar': '<path d="M3 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6"/><path d="M15 9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V9"/><path d="M9 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5"/><path d="M4 20h14"/>',
+  blocks: '<path d="M14 4a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4"/><path d="M3 14h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v12"/>',
+  mail: '<path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7"/><path d="m3 7 9 6 9-6"/>',
+  phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5l1.5-2.5 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+  'map-pin': '<path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/><path d="m17.657 16.657-4.243 4.243a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0"/>',
+  'brand-github': '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 4.8 5.4 5.1 5.4 5.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 11.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>',
+  sun: '<path d="M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0"/><path d="M3 12h1m8-9v1m8 8h1m-9 8v1m-6.4-15.4.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"/>',
+  moon: '<path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 3.008V3"/>',
+  'arrow-up': '<path d="M12 5v14"/><path d="m18 11-6-6-6 6"/>',
+  'chevron-left': '<path d="m15 6-6 6 6 6"/>',
+  'chevron-right': '<path d="m9 6 6 6-6 6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  'external-link': '<path d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/><path d="m11 13 9-9M15 4h5v5"/>'
+  ,sparkles: '<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/><path d="m19 3-.4 1.6L17 5l1.6.4L19 7l.4-1.6L21 5l-1.6-.4L19 3Z"/>'
+  ,coffee: '<path d="M5 8h10v5a5 5 0 0 1-10 0V8Z"/><path d="M15 10h2a3 3 0 1 1 0 6h-2"/><path d="M3 21h18M6 4c0-1 .5-1.5 1-2M10 4c0-1 .5-1.5 1-2"/>'
+  ,'layout-grid': '<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>'
+  ,code: '<path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/>'
+};
+
+function renderSurfaceIcons(root = document) {
+  root.querySelectorAll('[data-icon]').forEach((host) => {
+    const name = host.dataset.icon;
+    const paths = SURFACE_ICON_PATHS[name];
+    if (!paths) return;
+    host.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
+  });
+}
+
+function syncThemeIcon() {
+  if (!themeBtn) return;
+  themeBtn.innerHTML = `<span class="theme-icon" data-icon="${getTheme() === 'dark' ? 'sun' : 'moon'}" aria-hidden="true"></span>`;
+  themeBtn.setAttribute('aria-pressed', String(getTheme() === 'dark'));
+  renderSurfaceIcons(themeBtn);
+}
+
+renderSurfaceIcons();
+syncThemeIcon();
+themeBtn?.addEventListener('click', () => setTimeout(syncThemeIcon, 0));
